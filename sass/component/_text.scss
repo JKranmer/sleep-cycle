@@ -1,0 +1,33 @@
+@use "../variables" as v;
+@use "../mixins" as m;
+
+p,
+h1,
+h2,
+h3,
+span {
+  color: v.$neutral-color-low-dark;
+}
+
+h1,
+h2,
+h3 {
+  @include m.dark-theme {
+    color: v.$neutral-color-hight-pure;
+  }
+}
+
+span,
+p,
+ul,
+label {
+  @include m.dark-theme {
+    color: v.$neutral-color-hight-medium;
+  }
+}
+
+ul.list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}

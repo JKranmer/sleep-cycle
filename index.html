@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Controle do sono</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+  <main class="container">
+    <section>
+
+    </section>
+    <section>
+      <input type="checkbox" id="switch" name="mode">
+      <label for="switch">Tema Dark</label>
+
+      <div class="card">
+        <h1>Calculo de ciclo de sonos</h1>
+        <!-- <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque, ea. Voluptate architecto libero similique.
+          Enim
+          in ipsum, pariatur iusto aut rem consequuntur culpa aspernatur neque maiores, explicabo labore, debitis
+          voluptatum.</p> -->
+        <div class="form">
+          <div class="form__radio">
+            <div class="form__radio--group">
+              <label for="start">Início
+                <input type="radio" name="type" value="start" id="start" checked>
+              </label>
+            </div>
+            <div class="form__radio--group">
+              <label for="end">Final
+                <input type="radio" name="type" value="end" id="end">
+              </label>
+            </div>
+          </div>
+          <div class="form__group">
+            <label for="start-sleep" class="texto">Início do sono</label>
+            <input type="time" name="start-sleep" id="start-sleep" placeholder="Preencher">
+          </div>
+          <div class="form__group">
+            <label for="qt-cicle">Quantidade ciclo do sono</label>
+            <input type="number" name="qt-cicle" id="qt-cicle" placeholder="Preencher">
+          </div>
+          <div class="form__group">
+            <button class="btn--primary">Calcular</button>
+          </div>
+        </div>
+        <div id="resultado">
+          <div class="resume">
+            <div class="resume__item resume__item--error">
+              <div class="resume__item--label">Duração do sono:</div>
+              <h2 class="resume__item--value" id="timeDuration">00:00</h2>
+            </div>
+            <div class="resume__item resume__item--regular">
+              <div class="resume__item--label">Início do sono:</div>
+              <h2 class="resume__item--value" id="timeStart">00:00</h2>
+            </div>
+            <div class="resume__item ">
+              <div class="resume__item--label" id="timeToUp">Tempo previsto para acordar:</div>
+              <h2 class="resume__item--value">00:00</h2>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <script src="js/main.js"></script>
+  <script src="js/darkmode.js"></script>
+</body>
+
+</html>

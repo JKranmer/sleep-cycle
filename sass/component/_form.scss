@@ -1,0 +1,72 @@
+@use "../variables" as v;
+@use "../mixins" as m;
+
+.form {
+  @include m.mq(md) {
+    @include m.flx(space-between, end);
+  }
+  &__group {
+    margin-top: 1rem;
+    @include m.mq(md) {
+      margin-top: 0;
+    }
+    label {
+      display: block;
+      font-size: 0.75rem;
+    }
+    input {
+      width: 100%;
+      @include m.mq(md) {
+        width: auto;
+      }
+      border: solid 2px v.$neutral-color-hight-dark;
+      border-radius: v.$border-radius-sm;
+      padding: 0.5rem 1rem;
+      margin-top: 0.25rem;
+      min-height: 40px;
+      box-sizing: border-box;
+    }
+  }
+  &__radio {
+    margin-top: 1rem;
+    display: flex;
+    &--group {
+      margin-right: 1rem;
+      input[type="radio"] {
+        all: unset;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+      }
+      label {
+        padding: 0.5rem 1rem;
+        cursor: pointer;
+        display: block;
+        position: relative;
+        box-sizing: border-box;
+        border-radius: v.$border-radius-sm;
+        background-color: v.$neutral-color-hight-pure;
+        @include m.dark-theme {
+          color: v.$neutral-color-low-pure;
+          background-color: v.$neutral-color-low-medium;
+        }
+        input[type="radio"] {
+          border-radius: v.$border-radius-sm;
+          border: 2px solid v.$neutral-color-hight-dark;
+          box-sizing: border-box;
+        }
+
+        input[type="radio"]:checked {
+          @extend %shadow-level-1;
+          border-color: v.$neutral-color-low-light;
+          @include m.dark-theme {
+            background-color: rgba(v.$neutral-color-low-dark, 0.5);
+            color: v.$neutral-color-hight-pure;
+          }
+        }
+      }
+    }
+  }
+}
