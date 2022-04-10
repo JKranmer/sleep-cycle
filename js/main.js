@@ -1,107 +1,41 @@
-const btn =  document.querySelector('button')
+// Logia de calculo Ciclo do sono
+import {transformTime, calcTime} from './sleep-cycle.js';
 
+// Evento de click
+const btn =  document.querySelector('button')
 btn.addEventListener('click', () => {
-  const startSleep = document.querySelector('#start-sleep');
-  const quantidade = document.querySelector('#qt-cicle');
-  calculo(startSleep.value, quantidade.value);
+  const starOrEndSleep = document.querySelector('#start-sleep').value;
+  const qtd = document.querySelector('#qt-cicle').value;
+  let calcTimes = calcTime(qtd);
+  atualizarDados(transformTime(qtd), starOrEndSleep, calcTimes);
 })
 
-const inputType = document.querySelectorAll('[type="radio"]');
+//  ====== ***  Atualição dos cards  *** =======  //
+const atualizarDados = (timeSleep, starOrEndSleep, toSleepOrWakeUp) => {
+  printResult(1,timeSleep);
+  printResult(2,starOrEndSleep);
+  printResult(3,toSleepOrWakeUp);
+}
+const printResult = (index, time) =>{
+  const resultado = document.querySelector('#resultado .resume__item:nth-child('+index+')>h2')
+  resultado.innerText = time;
+}
 
-inputType.forEach(element => {
+
+// Tratamento de nomemclatura
+const Radio = document.querySelectorAll('[type="radio"]');
+
+Radio.forEach(element => {
   element.addEventListener('click', (event) => {
-    const text = document.querySelector('.texto');
+    const textInput = document.querySelector('.texto>span');
+    const textResult = document.querySelector('#resultado .resume__item:nth-child(2)>div>span')
+    const textToSleepOrWakeUp = document.querySelector('#resultado .resume__item:nth-child(3)>div>span')
     if (event.target.value == 'start') {
-      text.innerHTML = "Hora de dormir";
+      textInput.innerHTML = textResult.innerHTML = " dormir:";
+      textToSleepOrWakeUp.innerHTML = "acordar"
     } else {
-      text.innerHTML = "Hora de acordar";
+      textInput.innerHTML = textResult.innerHTML = " acordar:";
+      textToSleepOrWakeUp.innerHTML = "dormir"
     }
   })
 });
-
-
-  // Functions
-  const calculo = (time, qt) => {
-    let minutos = 30 * qt;
-    let horas = 1 * qt;
-
-    duracaoSono(horas, minutos);
-
-    timeEnd(horas, minutos, time)
-
-  }
-
-  const timeEnd = (h, m, time) => {
-    const timeFinal = tratamentoTime(time);
-    if(inputType[0].checked){
-      h += parseInt(timeFinal[0]);
-    } else {
-      h = parseInt(timeFinal[0]) - h;
-    }
-    m += parseInt(timeFinal[1]);
-
-    const arrayTime = convercaoMinHoras(m);
-    if(inputType[0].checked){
-      h += arrayTime[0];
-    } else {
-      h -= arrayTime[0];
-    }
-
-    const arrayTratamento = tratamento24h(h, arrayTime[1]);
-    printResult(arrayTratamento[0], arrayTratamento[1], 3);
-  }
-
-  const printResult = (h, m, index) =>{
-    const resultado = document.querySelector('#resultado .resume__item:nth-child('+index+')>h2')
-
-    resultado.innerText = h+':'+m;
-  }
-
-  const tratamentoTime = (time) => {
-    let valores = time.split(':');
-    return valores;
-  }
-
-  const duracaoSono = (h, m) => {
-    const arrayTime = convercaoMinHoras(m);
-    h += arrayTime[0];
-    printResult(h, arrayTime[1], 1);
-  }
-
-  const convercaoMinHoras = (m) =>{
-    const resultado = [];
-    let minutos = m;
-    let talvezHora = minutos/60;
-    if(talvezHora >= 1){
-      resultado.push(parseInt(talvezHora));
-    } else {
-      resultado.push(0);
-    }
-
-    minutos = minutos%60;
-
-    resultado.push(minutos);
-
-    return resultado;
-  }
-
-  const tratamento24h = (h, m) =>{
-    const resultado = [];
-    if(h >= 24){
-      h -= 24;
-      resultado.push(h);
-    } else if(h < 0 ) {
-      h = 24 + h;
-      resultado.push(h);
-
-    } else {
-      resultado.push(h);
-    }
-    if(m < 0) {
-      m = m*(-1);
-      resultado.push(m)
-    } else {
-      resultado.push(m)
-    }
-    return resultado;
-  }
