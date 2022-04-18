@@ -265,6 +265,15 @@ ul.list {
 @media only screen and (min-width: 768px) {
   .form__group {
     margin-top: 0;
+    padding-left: 1rem;
+  }
+}
+.form__group.range {
+  flex-grow: 1;
+}
+@media only screen and (min-width: 768px) {
+  .form__group.range {
+    padding: 0 3rem;
   }
 }
 .form__group label {
@@ -361,6 +370,11 @@ input[type=range] {
   width: 100%;
   border-radius: 1rem;
   display: flex;
+}
+@media only screen and (min-width: 768px) {
+  input[type=range] {
+    margin-bottom: 0;
+  }
 }
 input[type=range]:focus {
   outline: none;

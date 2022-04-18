@@ -9,6 +9,13 @@
     margin-top: 1rem;
     @include m.mq(md) {
       margin-top: 0;
+      padding-left: 1rem;
+    }
+    &.range{
+      flex-grow: 1;
+      @include m.mq(md){
+        padding: 0 3rem;
+      }
     }
     label {
       display: block;

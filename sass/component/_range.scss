@@ -7,6 +7,9 @@ input[type=range]{
   background: transparent;
   -webkit-appearance: none;
   margin:10px 0 20px 0;
+  @include m.mq(md){
+    margin-bottom: 0;
+  }
   width: 100%;
   border-radius: 1rem;
   display: flex;
