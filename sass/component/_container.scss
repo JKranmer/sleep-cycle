@@ -3,7 +3,7 @@
 
 body {
   @include m.dark-theme() {
-    background-color: v.$neutral-color-low-pure;
+    background-color: v.$neutral-color-black;
   }
 
   margin: 0;

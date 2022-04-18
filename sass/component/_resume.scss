@@ -19,7 +19,7 @@
     border: solid 3px v.$neutral-color-hight-pure;
     @include m.dark-theme {
       border: solid 3px v.$neutral-color-low-pure;
-      background-color: v.$neutral-color-low-pure;
+      background-color: v.$neutral-color-black;
     }
     &--error {
       border-color: v.$brand-color-feedback-error;

@@ -16,12 +16,12 @@ body {
 }
 @media (prefers-color-scheme: dark) {
   body {
-    background-color: #171919;
+    background-color: #000;
   }
 }
 [data-theme=dark] body,
 body [data-theme=dark] {
-  background-color: #171919;
+  background-color: #000;
 }
 
 .container {
@@ -47,7 +47,7 @@ body [data-theme=dark] {
 }
 @media (prefers-color-scheme: dark) {
   .card {
-    background-color: #4a4a4a;
+    background-color: #171919;
   }
   .card h1 {
     color: #eee;
@@ -61,7 +61,7 @@ body [data-theme=dark] {
 }
 [data-theme=dark] .card,
 .card [data-theme=dark] {
-  background-color: #4a4a4a;
+  background-color: #171919;
 }
 [data-theme=dark] .card h1,
 .card [data-theme=dark] h1 {
@@ -186,13 +186,13 @@ ul.list {
 @media (prefers-color-scheme: dark) {
   .resume__item {
     border: solid 3px #171919;
-    background-color: #171919;
+    background-color: #000;
   }
 }
 [data-theme=dark] .resume__item,
 .resume__item [data-theme=dark] {
   border: solid 3px #171919;
-  background-color: #171919;
+  background-color: #000;
 }
 .resume__item--error {
   border-color: #e68181;
