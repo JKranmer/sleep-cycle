@@ -1,7 +1,7 @@
 // Quantas horas de sono dormidas
 export const transformTime = (quantidade) => {
   let time =  new Date(calcularQuantidadeCicloSono(quantidade) * 60000).toISOString().substr(11,5);
-  console.log(time);
+  // console.log(time);
   return time;
 }
 
@@ -36,12 +36,12 @@ const timeStartProcess = () =>{
   let m = parseInt(timeArray[1]);
 
   const date = new Date(0);
-  console.log(date.toISOString().substr(11,5) + ' Antes');
+  // console.log(date.toISOString().substr(11,5) + ' Antes');
 
   date.setHours(date.getHours() + h)
   date.setMinutes(date.getMinutes() + m)
 
-  console.log(date.toISOString().substr(11,5) + ' Depois');
+  // console.log(date.toISOString().substr(11,5) + ' Depois');
   return date
 
 }

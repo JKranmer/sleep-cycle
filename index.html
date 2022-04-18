@@ -12,18 +12,11 @@
 <body>
   <main class="container">
     <section>
-
-    </section>
-    <section>
-      <input type="checkbox" id="switch" name="mode">
-      <label for="switch">Tema Dark</label>
+      <!-- <input type="checkbox" id="switch" name="mode">
+      <label for="switch">Tema Dark</label> -->
 
       <div class="card">
         <h1>Calculo de ciclo de sonos</h1>
-        <!-- <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque, ea. Voluptate architecto libero similique.
-          Enim
-          in ipsum, pariatur iusto aut rem consequuntur culpa aspernatur neque maiores, explicabo labore, debitis
-          voluptatum.</p> -->
         <div class="form">
           <div class="form__radio">
             <div class="form__radio--group">
@@ -39,11 +32,17 @@
           </div>
           <div class="form__group">
             <label for="start-sleep" class="texto">Hora de<span>dormir:</span></label>
-            <input type="time" name="start-sleep" id="start-sleep" placeholder="Preencher">
+            <input type="time" name="start-sleep" id="start-sleep" value="00:00" placeholder="Preencher">
           </div>
           <div class="form__group">
-            <label for="qt-cicle">Quantidade ciclo do sono</label>
-            <input type="number" name="qt-cicle" id="qt-cicle" placeholder="Preencher">
+            <label for="qt-cicle" class="range--group">Quantidade ciclo do sono
+              <span class="range--value" id="respostaRange">5</span>
+            </label>
+            <div>
+              <input type="range" id="qt-cicle" min="1" max="9">
+
+            </div>
+            <!-- <input type="number" name="qt-cicle" id="qt-cicle" placeholder="Preencher"> -->
           </div>
           <div class="form__group">
             <button class="btn--primary">Calcular</button>

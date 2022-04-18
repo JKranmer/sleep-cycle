@@ -6,6 +6,7 @@ const btn =  document.querySelector('button')
 btn.addEventListener('click', () => {
   const starOrEndSleep = document.querySelector('#start-sleep').value;
   const qtd = document.querySelector('#qt-cicle').value;
+
   let calcTimes = calcTime(qtd);
   atualizarDados(transformTime(qtd), starOrEndSleep, calcTimes);
 })
@@ -39,3 +40,8 @@ Radio.forEach(element => {
     }
   })
 });
+
+const Range = document.getElementById('qt-cicle')
+Range.addEventListener('change', (event)=> {
+  document.getElementById('respostaRange').innerHTML = event.target.value
+})
