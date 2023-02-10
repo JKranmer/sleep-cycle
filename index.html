@@ -1,83 +1,23 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="en">
 
 <head>
   <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="icon" href="/favicon.ico">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Controle do sono</title>
-  <link rel="stylesheet" href="css/style.min.css">
-  <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
-  <link rel="manifest" href="favicon/site.webmanifest">
-  <link rel="mask-icon" href="favicon/safari-pinned-tab.svg" color="#5bbad5">
-  <meta name="description"
-    content="Com o intuito de ter uma melhor qualidade de sono, usando a técnica de cíclos do sono como formula de calcula da para planeja quando dormir, o quando dormir e quando acordar.">
-  <meta name="msapplication-TileColor" content="#000">
-  <meta name="theme-color" content="#000">
+  <title>Sleep Cyple</title>
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="theme-color" content="#ffffff">
 </head>
 
 <body>
-  <main class="container">
-    <section>
-      <!-- <input type="checkbox" id="switch" name="mode">
-      <label for="switch">Tema Dark</label> -->
-
-      <div class="card">
-        <h1>Calculo de ciclo de sonos</h1>
-        <div class="form">
-          <div class="form__radio">
-            <div class="form__radio--group">
-              <label for="start">Início
-                <input type="radio" name="type" value="start" id="start" checked>
-              </label>
-            </div>
-            <div class="form__radio--group">
-              <label for="end">Final
-                <input type="radio" name="type" value="end" id="end">
-              </label>
-            </div>
-          </div>
-          <div class="form__group">
-            <label for="start-sleep" class="texto">Hora de<span>dormir:</span></label>
-            <input type="time" name="start-sleep" id="start-sleep" value="00:00" placeholder="Preencher">
-          </div>
-          <div class="form__group range">
-            <label for="qt-cicle" class="range--group">Quantidade ciclo do sono
-              <span class="range--value" id="respostaRange">5</span>
-            </label>
-            <div>
-              <input type="range" id="qt-cicle" min="1" max="9">
-
-            </div>
-            <!-- <input type="number" name="qt-cicle" id="qt-cicle" placeholder="Preencher"> -->
-          </div>
-          <div class="form__group">
-            <button class="btn--primary">Calcular</button>
-          </div>
-        </div>
-        <div id="resultado">
-          <div class="resume">
-            <div class="resume__item resume__item--error">
-              <div class="resume__item--label">Duração do sono:</div>
-              <h2 class="resume__item--value" id="timeDuration">00:00</h2>
-            </div>
-            <div class="resume__item resume__item--regular">
-              <div class="resume__item--label">Hora de <span>dormir</span></div>
-              <h2 class="resume__item--value" id="timeStart">00:00</h2>
-            </div>
-            <div class="resume__item ">
-              <div class="resume__item--label" id="timeToUp">Tempo previsto para <span>acordar</span>:</div>
-              <h2 class="resume__item--value">00:00</h2>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  </main>
-  <script type="module" src="js/main.min.js"></script>
-  <!-- <script src="js/darkmode.js"></script>  -->
+  <div id="app"></div>
+  <script type="module" src="/src/main.ts"></script>
 </body>
 
 </html>

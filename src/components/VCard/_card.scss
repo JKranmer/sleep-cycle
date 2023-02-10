@@ -1,0 +1,49 @@
+.card {
+  $background: v.$neutral-color-hight-medium;
+  $title-color: v.$neutral-color-low-dark;
+  $subtitle: v.$neutral-color-low-medium;
+  $paragraf: v.$neutral-color-low-dark;
+
+  @mixin colors-theme(
+    $m-background: $background,
+    $m-title-color: $title-color,
+    $m-subtitle: $subtitle,
+    $m-paragraf: $paragraf
+  ) {
+    background-color: $m-background;
+    h1 {
+      color: $m-title-color;
+    }
+    h3 {
+      color: $m-subtitle;
+    }
+    p {
+      color: $m-paragraf;
+    }
+  }
+
+  @include colors-theme();
+
+  @include m.dark-theme() {
+    $background: v.$neutral-color-low-pure;
+    $title-color: v.$neutral-color-hight-medium;
+    $subtitle: v.$neutral-color-hight-dark;
+    $paragraf: v.$neutral-color-low-light;
+    @include colors-theme();
+  }
+
+  margin: 1rem;
+  border-radius: 1rem;
+  padding: 2rem 1.5rem;
+  h1 {
+    margin: 0;
+  }
+  h3 {
+    margin-top: 0.5rem;
+  }
+  p {
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
