@@ -42,7 +42,22 @@
         </div>
       </v-form>
       <div id="resultado">
-        <v-resume></v-resume>
+        <v-resume-group>
+          <v-resume
+            label="Duração do sono:"
+            value-text="00:00"
+            status="error"
+          ></v-resume>
+          <v-resume
+            label="Hora de dormir"
+            value-text="00:00"
+            status="regular"
+          ></v-resume>
+          <v-resume
+            label="Tempo previsto para acordar:"
+            value-text="00:00"
+          ></v-resume>
+        </v-resume-group>
       </div>
     </v-card>
   </v-container>
@@ -55,6 +70,7 @@ import VForm from "@/components/VForm/VForm.vue";
 import VRange from "@/components/VRange/VRange.vue";
 import VButton from "@/components/VButton/VButton.vue";
 import VResume from "@/components/VResume/VResume.vue";
+import VResumeGroup from "@/components/VResume/VResumeGroup.vue";
 import { RouterLink } from "vue-router";
 import { ref, watch } from "vue";
 

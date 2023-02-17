@@ -1,20 +1,27 @@
 <template>
-  <div class="resume">
-    <div class="resume__item resume__item--error">
-      <div class="resume__item--label">Duração do sono:</div>
-      <h2 class="resume__item--value" id="timeDuration">00:00</h2>
-    </div>
-    <div class="resume__item resume__item--regular">
-      <div class="resume__item--label">Hora de <span>dormir</span></div>
-      <h2 class="resume__item--value" id="timeStart">00:00</h2>
-    </div>
-    <div class="resume__item">
-      <div class="resume__item--label" id="timeToUp">
-        Tempo previsto para <span>acordar</span>:
-      </div>
-      <h2 class="resume__item--value">00:00</h2>
-    </div>
+  <div class="resume__item" :class="setStatus">
+    <div class="resume__item--label">{{ label }}</div>
+    <h2 class="resume__item--value">{{ valueText }}</h2>
   </div>
 </template>
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { computed } from "vue";
+
+const props = defineProps({
+  label: {
+    type: String,
+  },
+  valueText: {
+    type: String,
+  },
+  status: {
+    type: String,
+    required: false,
+  },
+});
+
+const setStatus = computed(() =>
+  props.status ? "resume__item--" + props.status : ""
+);
+</script>
 <style lang="sass" src="./_resume.scss"></style>
