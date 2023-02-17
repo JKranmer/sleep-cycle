@@ -36,7 +36,7 @@
             placeholder="Preencher"
           />
         </div>
-        <v-range class="form__group" />
+        <v-range class="form__group" @getQtCycle="setQtCycle" />
         <div class="form__group">
           <v-button status="primary">Calcular</v-button>
         </div>
@@ -55,5 +55,20 @@ import VForm from "@/components/VForm/VForm.vue";
 import VRange from "@/components/VRange/VRange.vue";
 import VButton from "@/components/VButton/VButton.vue";
 import VResume from "@/components/VResume/VResume.vue";
-import { RouterLink, RouterView } from "vue-router";
+import { RouterLink } from "vue-router";
+import { ref, watch } from "vue";
+
+const qtCycle = ref();
+const setQtCycle = (value: number): void => {
+  qtCycle.value = value;
+};
+
+watch(
+  () => qtCycle,
+  (): void => {
+    // ToDo
+    console.log("Change Value", qtCycle);
+  },
+  { deep: true }
+);
 </script>
