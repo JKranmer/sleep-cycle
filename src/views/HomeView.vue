@@ -11,16 +11,22 @@
               <input
                 type="radio"
                 name="type"
-                value="start"
+                v-model="form.start"
                 id="start"
-                checked
+                value="start"
               />
             </label>
           </div>
           <div class="form__radio--group">
             <label for="end"
               >Final
-              <input type="radio" name="type" value="end" id="end" />
+              <input
+                type="radio"
+                name="type"
+                v-model="form.start"
+                id="end"
+                value="end"
+              />
             </label>
           </div>
         </div>
@@ -32,7 +38,7 @@
             type="time"
             name="start-sleep"
             id="start-sleep"
-            value="00:00"
+            v-model="form.time"
             placeholder="Preencher"
           />
         </div>
@@ -74,16 +80,21 @@ import VResumeGroup from "@/components/VResume/VResumeGroup.vue";
 import { RouterLink } from "vue-router";
 import { ref, watch } from "vue";
 
-const qtCycle = ref();
+const form = ref({
+  qtCycle: 0,
+  start: true,
+  time: "00:00",
+});
+
 const setQtCycle = (value: number): void => {
-  qtCycle.value = value;
+  form.value.qtCycle = value;
 };
 
 watch(
-  () => qtCycle,
+  () => form,
   (): void => {
     // ToDo
-    console.log("Change Value", qtCycle);
+    console.log("Change Value", form.value);
   },
   { deep: true }
 );
