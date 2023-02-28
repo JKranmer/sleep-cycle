@@ -51,17 +51,17 @@
         <v-resume-group>
           <v-resume
             label="Duração do sono:"
-            value-text="00:00"
+            :value-text="cardDuration"
             status="error"
           ></v-resume>
           <v-resume
             label="Hora de dormir"
-            value-text="00:00"
+            :value-text="form.time"
             status="regular"
           ></v-resume>
           <v-resume
             label="Tempo previsto para acordar:"
-            value-text="00:00"
+            :value-text="cardUp"
           ></v-resume>
         </v-resume-group>
       </div>
@@ -77,12 +77,17 @@ import VRange from "@/components/VRange/VRange.vue";
 import VButton from "@/components/VButton/VButton.vue";
 import VResume from "@/components/VResume/VResume.vue";
 import VResumeGroup from "@/components/VResume/VResumeGroup.vue";
+
+import { ref, watch, onMounted } from "vue";
 import { RouterLink } from "vue-router";
-import { ref, watch } from "vue";
+import { calcTime, transformTime } from "./SleepCycle";
+
+const cardDuration = ref("");
+const cardUp = ref("");
 
 const form = ref({
+  start: "start",
   qtCycle: 0,
-  start: true,
   time: "00:00",
 });
 
@@ -92,10 +97,16 @@ const setQtCycle = (value: number): void => {
 
 watch(
   () => form,
-  (): void => {
-    // ToDo
-    console.log("Change Value", form.value);
-  },
+  (): void => starCalc(),
   { deep: true }
 );
+
+onMounted((): void => {
+  starCalc();
+});
+
+const starCalc = (): void => {
+  cardDuration.value = transformTime(form.value.qtCycle);
+  cardUp.value = calcTime(form.value);
+};
 </script>
