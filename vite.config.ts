@@ -51,7 +51,6 @@ export default defineConfig(() => {
           additionalData: `
               @use "./src/assets/style/sass/variables" as v;
               @use "./src/assets/style/sass/mixins" as m;
-              @import "./src/assets/style/sass/main.scss";
             `,
         },
       },

@@ -2,7 +2,6 @@
   <v-container>
     <v-card>
       <h1>Calculo de ciclo de sonos</h1>
-      <router-link to="/about">Saiba mais como isso funciona</router-link>
       <v-form>
         <div class="form__radio">
           <div class="form__radio--group">
@@ -63,9 +62,21 @@
           ></v-resume>
         </v-resume-group>
       </div>
+      <div class="footer">
+        <router-link class="link" to="/about"
+          >Saiba mais como isso funciona</router-link
+        >
+      </div>
     </v-card>
   </v-container>
 </template>
+
+<style lang="scss" scoped>
+.footer {
+  margin-top: 2rem;
+  text-align: center;
+}
+</style>
 
 <script setup lang="ts">
 import VContainer from "@/components/VContainer/VContainer.vue";

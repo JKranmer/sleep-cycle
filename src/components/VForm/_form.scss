@@ -67,8 +67,8 @@
         border-radius: v.$border-radius-sm;
         background-color: v.$neutral-color-hight-pure;
         @include m.dark-theme {
-          color: v.$neutral-color-low-pure;
-          background-color: v.$neutral-color-low-medium;
+          color: v.$neutral-color-hight-pure;
+          background-color: v.$neutral-color-low-pure;
         }
         input[type="radio"] {
           border-radius: v.$border-radius-sm;
@@ -80,8 +80,7 @@
           @extend %shadow-level-1;
           border-color: v.$neutral-color-low-light;
           @include m.dark-theme {
-            background-color: rgba(v.$neutral-color-low-dark, 0.5);
-            color: v.$neutral-color-hight-pure;
+            background-color: rgba(v.$neutral-color-hight-pure, 0.5);
           }
         }
       }
