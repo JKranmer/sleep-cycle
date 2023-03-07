@@ -11,7 +11,7 @@
     &.range{
       flex-grow: 1;
       @include m.mq(md){
-        padding: 0 3rem;
+        padding-left: 3rem;
       }
     }
     label {

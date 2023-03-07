@@ -13,7 +13,7 @@
                 name="type"
                 v-model="form.start"
                 id="start"
-                value="start"
+                value="0"
               />
             </label>
           </div>
@@ -25,15 +25,15 @@
                 name="type"
                 v-model="form.start"
                 id="end"
-                value="end"
+                value="1"
               />
             </label>
           </div>
         </div>
         <div class="form__group">
           <label for="start-sleep" class="texto"
-            >Hora de <span>dormir:</span></label
-          >
+            >Hora de <span>{{ handlePhrease(form.start) }}:</span>
+          </label>
           <input
             type="time"
             name="start-sleep"
@@ -43,9 +43,6 @@
           />
         </div>
         <v-range class="form__group" @getQtCycle="setQtCycle" />
-        <div class="form__group">
-          <v-button status="primary">Calcular</v-button>
-        </div>
       </v-form>
       <div id="resultado">
         <v-resume-group>
@@ -55,12 +52,13 @@
             status="error"
           ></v-resume>
           <v-resume
-            label="Hora de dormir"
+            :label="`Hora de ${handlePhrease(form.start)}`"
             :value-text="form.time"
             status="regular"
           ></v-resume>
           <v-resume
-            label="Tempo previsto para acordar:"
+            :label="`Tempo previsto para
+            ${handlePhrease(form.start ?? 1)}`"
             :value-text="cardUp"
           ></v-resume>
         </v-resume-group>
@@ -74,20 +72,19 @@ import VContainer from "@/components/VContainer/VContainer.vue";
 import VCard from "@/components/VCard/VCard.vue";
 import VForm from "@/components/VForm/VForm.vue";
 import VRange from "@/components/VRange/VRange.vue";
-import VButton from "@/components/VButton/VButton.vue";
 import VResume from "@/components/VResume/VResume.vue";
 import VResumeGroup from "@/components/VResume/VResumeGroup.vue";
 
 import { ref, watch, onMounted } from "vue";
 import { RouterLink } from "vue-router";
-import { calcTime, transformTime } from "./SleepCycle";
+import { calcTime, transformTime, handlePhrease } from "./SleepCycle";
 
 const cardDuration = ref("");
 const cardUp = ref("");
 
 const form = ref({
-  start: "start",
-  qtCycle: 0,
+  start: 0,
+  qtCycle: 5,
   time: "00:00",
 });
 

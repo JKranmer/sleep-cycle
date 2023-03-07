@@ -5,13 +5,13 @@ export const transformTime = (qtd: number): string => {
 interface IForm {
   time: string;
   qtCycle: number;
-  start: string;
+  start: number;
 }
 
 export const calcTime = (form: IForm): string => {
   const starOrEndSleep = timeStartProcess(form.time);
   const quantidadeDormida = 90 * form.qtCycle;
-  if (form.start == "start") {
+  if (form.start == 0) {
     starOrEndSleep.setMinutes(starOrEndSleep.getMinutes() + quantidadeDormida);
   } else {
     starOrEndSleep.setMinutes(starOrEndSleep.getMinutes() - quantidadeDormida);
@@ -30,4 +30,13 @@ const timeStartProcess = (time: string): Date => {
   date.setMinutes(date.getMinutes() + m);
 
   return date;
+};
+
+enum EWord {
+  "dormir",
+  "acordar",
+}
+
+export const handlePhrease = (phrease: number): string => {
+  return phrease == 0 ? EWord[0] : EWord[1];
 };
