@@ -38,5 +38,5 @@ enum EWord {
 }
 
 export const handlePhrease = (phrease: number): string => {
-  return phrease == 0 ? EWord[0] : EWord[1];
+  return EWord[phrease ?? 1];
 };

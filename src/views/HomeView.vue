@@ -57,7 +57,7 @@
           ></v-resume>
           <v-resume
             :label="`Tempo previsto para
-            ${handlePhrease(form.start ?? 1)}`"
+            ${handlePhrease(form.start == 1 ? 0 : 1)}`"
             :value-text="cardUp"
           ></v-resume>
         </v-resume-group>
