@@ -62,6 +62,28 @@
           ></v-resume>
         </v-resume-group>
       </div>
+      <div>
+        <table>
+          <thead class="text-capitalize">
+            <tr>
+              <th>
+                {{ handlePhrease(form.start == 1 ? 0 : 1) }}
+              </th>
+              <th>Duração</th>
+              <th>
+                {{ handlePhrease(form.start) }}
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="(item, index) in list" :key="index">
+              <td>{{ item.timeUp }}</td>
+              <td>{{ item.duration }}</td>
+              <td>{{ item.time }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
       <div class="footer">
         <router-link class="link" to="/about"
           >Saiba mais como isso funciona</router-link
@@ -88,10 +110,17 @@ import VResumeGroup from "@/components/VResume/VResumeGroup.vue";
 
 import { ref, watch, onMounted } from "vue";
 import { RouterLink } from "vue-router";
-import { calcTime, transformTime, handlePhrease } from "./SleepCycle";
+import {
+  calcTime,
+  transformTime,
+  handlePhrease,
+  listTimeBus,
+} from "./SleepCycle";
+import type { ITimeBus } from "./SleepCycle";
 
 const cardDuration = ref("");
 const cardUp = ref("");
+const list = ref([{ time: "", duration: "", timeUp: "" }] as ITimeBus[]);
 
 const form = ref({
   start: 0,
@@ -116,5 +145,6 @@ onMounted((): void => {
 const starCalc = (): void => {
   cardDuration.value = transformTime(form.value.qtCycle);
   cardUp.value = calcTime(form.value);
+  list.value = listTimeBus(form.value);
 };
 </script>
