@@ -63,26 +63,7 @@
         </v-resume-group>
       </div>
       <div>
-        <table>
-          <thead class="text-capitalize">
-            <tr>
-              <th>
-                {{ handlePhrease(form.start == 1 ? 0 : 1) }}
-              </th>
-              <th>Duração</th>
-              <th>
-                {{ handlePhrease(form.start) }}
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr v-for="(item, index) in list" :key="index">
-              <td>{{ item.timeUp }}</td>
-              <td>{{ item.duration }}</td>
-              <td>{{ item.time }}</td>
-            </tr>
-          </tbody>
-        </table>
+        <v-table :start="form.start" :array-time-bus="list"></v-table>
       </div>
       <div class="footer">
         <router-link class="link" to="/about"
@@ -107,6 +88,7 @@ import VForm from "@/components/VForm/VForm.vue";
 import VRange from "@/components/VRange/VRange.vue";
 import VResume from "@/components/VResume/VResume.vue";
 import VResumeGroup from "@/components/VResume/VResumeGroup.vue";
+import VTable from "@/components/VTable/VTable.vue";
 
 import { ref, watch, onMounted } from "vue";
 import { RouterLink } from "vue-router";
@@ -125,7 +107,7 @@ const list = ref([{ time: "", duration: "", timeUp: "" }] as ITimeBus[]);
 const form = ref({
   start: 0,
   qtCycle: 5,
-  time: "00:00",
+  time: "22:00",
 });
 
 const setQtCycle = (value: number): void => {
