@@ -1,0 +1,47 @@
+* {
+  font-family: "Lato";
+}
+
+p,
+h1,
+h2,
+h3,
+span {
+  color: v.$neutral-color-low-dark;
+}
+
+h1,
+h2,
+h3 {
+  @include m.dark-theme {
+    color: v.$neutral-color-hight-pure;
+  }
+}
+
+span,
+p,
+ul,
+label {
+  @include m.dark-theme {
+    color: v.$neutral-color-hight-medium;
+  }
+}
+
+ul.list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+a.link{
+  text-decoration: none;
+  color: v.$brand-color-primary-pure;
+  font-weight: bold;
+  &:hover{
+    text-decoration: underline;
+  }
+}
+
+.text-capitalize{
+  text-transform: capitalize;
+}

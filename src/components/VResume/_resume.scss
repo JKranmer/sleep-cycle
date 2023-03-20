@@ -1,0 +1,62 @@
+.resume {
+  @include m.mq(md) {
+    @include m.flx(space-between);
+  }
+  &__item {
+    width: 100%;
+    box-sizing: border-box;
+    border-radius: 1rem;
+    padding: 1rem;
+    @extend %shadow-level-1;
+    &:not(:last-child) {
+      margin-right: 1rem;
+    }
+    &:not(:last-child):not(:first-child) {
+      margin-top: 1rem;
+      margin-bottom: 1rem;
+      @include m.mq(md) {
+          margin-top: 0;
+          margin-bottom: 0;
+      }
+    }
+    background-color: v.$neutral-color-hight-pure;
+    border: solid 3px v.$neutral-color-hight-pure;
+    @include m.dark-theme {
+      border: solid 3px v.$neutral-color-low-pure;
+      background-color: v.$neutral-color-black;
+    }
+    &--error {
+      border-color: v.$brand-color-feedback-error;
+      @include m.dark-theme {
+        border-color: v.$brand-color-feedback-error-dark;
+      }
+    }
+    &--regular {
+      border-color: v.$brand-color-feedback-regular;
+      @include m.dark-theme {
+        border-color: v.$brand-color-feedback-regular-dark;
+      }
+    }
+    &--good {
+      border-color: v.$brand-color-feedback-good;
+      @include m.dark-theme {
+        border-color: v.$brand-color-feedback-good-dark;
+      }
+    }
+    &--label {
+      font-size: 1rem;
+      margin-bottom: 0.75rem;
+    }
+    &--value {
+      font-size: 2rem;
+      margin: 0;
+      padding: 0;
+    }
+    &--label,
+    &--value {
+      @include m.dark-theme {
+        color: v.$neutral-color-hight-dark;
+      }
+    }
+  }
+}

@@ -1,0 +1,62 @@
+@mixin btn($color, $type: solid) {
+  padding: 0.75rem 1rem;
+  border-radius: v.$border-radius-sm;
+
+  width: fit-content;
+  font-size: 0.875rem;
+  display: inline-block;
+  transition: all ease-in-out 0.25s;
+  cursor: pointer;
+  text-decoration: none;
+  text-align: center;
+  font-family: v.$font-family-base;
+  font-weight: v.$font-weight-regular;
+  // TYPES
+  @if $type == solid {
+    color: v.$neutral-color-hight-pure;
+    border: solid 1px $color;
+    background-color: $color;
+    &:hover {
+      background-color: darken($color, 5);
+      border-color: darken($color, 5);
+    }
+  } @else if $type == outline {
+    color: $color;
+    border: solid 1px $color;
+    background-color: transparent;
+    &:hover {
+      color: v.$neutral-color-hight-pure;
+      background-color: $color;
+    }
+  } @else {
+    @error "Algo deu ruim no #{$color} ou no #{$type}";
+  }
+  &.btn--sm {
+    padding: 0.375rem 1.5rem;
+  }
+  &.btn--lg {
+    font-size: 1rem;
+    padding: 0.75rem 2rem;
+  }
+}
+
+@mixin create-btn($btns) {
+  @each $name, $color in $btns {
+    .btn-#{$name} {
+      @include btn($color);
+    }
+    .btn-outline-#{$name} {
+      @include btn($color, outline);
+    }
+  }
+}
+
+.btn {
+  &--primary {
+    @include btn(v.$brand-color-primary-pure);
+  }
+}
+
+// $feedback-color-success-pure
+// $feedback-color-helper-pure
+// $feedback-color-success-pure
