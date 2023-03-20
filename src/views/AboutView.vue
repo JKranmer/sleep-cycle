@@ -1,6 +1,5 @@
 <template>
-  <v-Container>
-    <router-link to="/" class="link">Voltar</router-link>
+  <v-detail-view>
     <v-card>
       <section>
         <h2>Oque é ciclo do sono?</h2>
@@ -43,7 +42,7 @@
         sempre acordar no sono leve.
       </p>
     </v-card>
-  </v-Container>
+  </v-detail-view>
 </template>
 
 <style lang="scss" scoped>
@@ -58,13 +57,9 @@ section {
 h2 {
   margin-top: 0;
 }
-.container > a {
-  margin-top: 1rem;
-}
 </style>
 
 <script setup lang="ts">
-import VContainer from "@/components/VContainer/VContainer.vue";
 import VCard from "@/components/VCard/VCard.vue";
-import { RouterLink } from "vue-router";
+import VDetailView from "@/views/template/DetailView.vue";
 </script>

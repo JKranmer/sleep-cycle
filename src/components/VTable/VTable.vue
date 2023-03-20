@@ -66,7 +66,7 @@ defineProps({
   @extend %shadow-level-1;
   width: 100%;
   text-align: center;
-  margin: 2rem 0;
+  margin-bottom: 0.5rem;
   border-radius: 1rem;
   @include m.mq(sm) {
     font-size: 1.25rem;

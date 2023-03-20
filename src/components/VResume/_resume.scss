@@ -7,10 +7,17 @@
     box-sizing: border-box;
     border-radius: 1rem;
     padding: 1rem;
-    margin-top: 1rem;
     @extend %shadow-level-1;
     &:not(:last-child) {
       margin-right: 1rem;
+    }
+    &:not(:last-child):not(:first-child) {
+      margin-top: 1rem;
+      margin-bottom: 1rem;
+      @include m.mq(md) {
+          margin-top: 0;
+          margin-bottom: 0;
+      }
     }
     background-color: v.$neutral-color-hight-pure;
     border: solid 3px v.$neutral-color-hight-pure;

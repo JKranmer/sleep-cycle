@@ -44,6 +44,7 @@
         <v-range class="form__group" @getQtCycle="setQtCycle" />
       </v-form>
       <div id="resultado">
+        <h2>Resultado:</h2>
         <v-resume-group>
           <v-resume
             label="Duração do sono:"
@@ -63,7 +64,9 @@
         </v-resume-group>
       </div>
       <div>
+        <h2>Tabela de horário de onibus:</h2>
         <v-table :start="form.start" :array-time-bus="list"></v-table>
+        <router-link class="link" to="/curiosity">Curiosidade</router-link>
       </div>
       <div class="footer">
         <router-link class="link" to="/about"
@@ -78,6 +81,10 @@
 .footer {
   margin-top: 2rem;
   text-align: center;
+}
+h2 {
+  margin: 1.5rem 0;
+  font-size: 1.25rem;
 }
 </style>
 
