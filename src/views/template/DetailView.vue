@@ -1,7 +1,7 @@
 <template>
   <v-Container>
     <router-link to="/" class="link">Voltar</router-link>
-    <slot></slot>
+    <slot><router-view /></slot>
   </v-Container>
 </template>
 
@@ -13,5 +13,5 @@
 
 <script setup lang="ts">
 import VContainer from "@/components/VContainer/VContainer.vue";
-import { RouterLink } from "vue-router";
+import { RouterLink, RouterView } from "vue-router";
 </script>
