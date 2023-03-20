@@ -12,6 +12,6 @@
 </style>
 
 <script setup lang="ts">
-import VContainer from "@/components/VContainer/VContainer.vue";
 import { RouterLink, RouterView } from "vue-router";
+import VContainer from "@/components/VContainer/VContainer.vue";
 </script>

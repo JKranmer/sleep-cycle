@@ -63,7 +63,12 @@
           ></v-resume>
         </v-resume-group>
       </div>
-      <div>
+      <div class="group-btn">
+        <v-button status="primary" @click="showTable = !showTable"
+          >{{ showTable ? "Ocultar" : "Mostrar" }} tabela</v-button
+        >
+      </div>
+      <div v-if="showTable">
         <h2>Tabela de horário de onibus:</h2>
         <v-table :start="form.start" :array-time-bus="list"></v-table>
         <router-link class="link" to="/curiosity">Curiosidade</router-link>
@@ -86,26 +91,33 @@ h2 {
   margin: 1.5rem 0;
   font-size: 1.25rem;
 }
+.group-btn {
+  width: 100%;
+  text-align: center;
+  padding-top: 1rem;
+}
 </style>
 
 <script setup lang="ts">
+import { ref, watch, onMounted } from "vue";
+import { RouterLink } from "vue-router";
+
 import VContainer from "@/components/VContainer/VContainer.vue";
 import VCard from "@/components/VCard/VCard.vue";
 import VForm from "@/components/VForm/VForm.vue";
 import VRange from "@/components/VRange/VRange.vue";
 import VResume from "@/components/VResume/VResume.vue";
 import VResumeGroup from "@/components/VResume/VResumeGroup.vue";
+import VButton from "@/components/VButton/VButton.vue";
 import VTable from "@/components/VTable/VTable.vue";
 
-import { ref, watch, onMounted } from "vue";
-import { RouterLink } from "vue-router";
+import type { ITimeBus } from "./SleepCycle";
 import {
   calcTime,
   transformTime,
   handlePhrease,
   listTimeBus,
 } from "./SleepCycle";
-import type { ITimeBus } from "./SleepCycle";
 
 const cardDuration = ref("");
 const cardUp = ref("");
@@ -116,6 +128,8 @@ const form = ref({
   qtCycle: 5,
   time: "22:00",
 });
+
+const showTable = ref(false);
 
 const setQtCycle = (value: number): void => {
   form.value.qtCycle = value;

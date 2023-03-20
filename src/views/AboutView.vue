@@ -59,5 +59,4 @@ h2 {
 
 <script setup lang="ts">
 import VCard from "@/components/VCard/VCard.vue";
-import VDetailView from "@/views/template/DetailView.vue";
 </script>
