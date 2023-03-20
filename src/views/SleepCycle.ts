@@ -40,3 +40,23 @@ enum EWord {
 export const handlePhrease = (phrease: number): string => {
   return EWord[phrease ?? 1];
 };
+
+export interface ITimeBus {
+  time: string;
+  duration: string;
+  timeUp: string;
+}
+
+export const listTimeBus = (form: IForm): ITimeBus[] => {
+  let i = 1;
+  const list = [];
+  while (i <= form.qtCycle) {
+    list.push({
+      time: form.time,
+      duration: transformTime(i),
+      timeUp: calcTime({ time: form.time, qtCycle: i, start: form.start }),
+    });
+    i++;
+  }
+  return list;
+};

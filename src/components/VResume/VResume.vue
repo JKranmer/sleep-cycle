@@ -24,4 +24,4 @@ const setStatus = computed(() =>
   props.status ? "resume__item--" + props.status : ""
 );
 </script>
-<style lang="sass" src="./_resume.scss"></style>
+<style lang="scss" src="./_resume.scss"></style>

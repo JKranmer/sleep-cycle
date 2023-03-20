@@ -44,6 +44,7 @@
         <v-range class="form__group" @getQtCycle="setQtCycle" />
       </v-form>
       <div id="resultado">
+        <h2>Resultado:</h2>
         <v-resume-group>
           <v-resume
             label="Duração do sono:"
@@ -62,6 +63,16 @@
           ></v-resume>
         </v-resume-group>
       </div>
+      <div class="group-btn">
+        <v-button status="primary" @click="showTable = !showTable"
+          >{{ showTable ? "Ocultar" : "Mostrar" }} tabela</v-button
+        >
+      </div>
+      <div v-if="showTable">
+        <h2>Tabela de horário de onibus:</h2>
+        <v-table :start="form.start" :array-time-bus="list"></v-table>
+        <router-link class="link" to="/curiosity">Curiosidade</router-link>
+      </div>
       <div class="footer">
         <router-link class="link" to="/about"
           >Saiba mais como isso funciona</router-link
@@ -76,28 +87,49 @@
   margin-top: 2rem;
   text-align: center;
 }
+h2 {
+  margin: 1.5rem 0;
+  font-size: 1.25rem;
+}
+.group-btn {
+  width: 100%;
+  text-align: center;
+  padding-top: 1rem;
+}
 </style>
 
 <script setup lang="ts">
+import { ref, watch, onMounted } from "vue";
+import { RouterLink } from "vue-router";
+
 import VContainer from "@/components/VContainer/VContainer.vue";
 import VCard from "@/components/VCard/VCard.vue";
 import VForm from "@/components/VForm/VForm.vue";
 import VRange from "@/components/VRange/VRange.vue";
 import VResume from "@/components/VResume/VResume.vue";
 import VResumeGroup from "@/components/VResume/VResumeGroup.vue";
+import VButton from "@/components/VButton/VButton.vue";
+import VTable from "@/components/VTable/VTable.vue";
 
-import { ref, watch, onMounted } from "vue";
-import { RouterLink } from "vue-router";
-import { calcTime, transformTime, handlePhrease } from "./SleepCycle";
+import type { ITimeBus } from "./SleepCycle";
+import {
+  calcTime,
+  transformTime,
+  handlePhrease,
+  listTimeBus,
+} from "./SleepCycle";
 
 const cardDuration = ref("");
 const cardUp = ref("");
+const list = ref([{ time: "", duration: "", timeUp: "" }] as ITimeBus[]);
 
 const form = ref({
   start: 0,
   qtCycle: 5,
-  time: "00:00",
+  time: "22:00",
 });
+
+const showTable = ref(false);
 
 const setQtCycle = (value: number): void => {
   form.value.qtCycle = value;
@@ -116,5 +148,6 @@ onMounted((): void => {
 const starCalc = (): void => {
   cardDuration.value = transformTime(form.value.qtCycle);
   cardUp.value = calcTime(form.value);
+  list.value = listTimeBus(form.value);
 };
 </script>

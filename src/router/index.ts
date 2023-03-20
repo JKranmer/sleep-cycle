@@ -12,7 +12,26 @@ const router = createRouter({
     {
       path: "/about",
       name: "about",
-      component: () => import("../views/AboutView.vue"),
+      component: () => import("../views/template/DetailView.vue"),
+      children: [
+        {
+          path: "",
+          name: "AboutView",
+          component: () => import("../views/AboutView.vue"),
+        },
+      ],
+    },
+    {
+      path: "/curiosity",
+      name: "curiosity",
+      component: () => import("../views/template/DetailView.vue"),
+      children: [
+        {
+          path: "",
+          name: "CuriosityView",
+          component: () => import("../views/CuriosityView.vue"),
+        },
+      ],
     },
   ],
 });
