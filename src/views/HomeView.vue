@@ -41,7 +41,7 @@
             placeholder="Preencher"
           />
         </div>
-        <v-range class="form__group" @getQtCycle="setQtCycle" />
+        <v-range class="form__group" v-model="form.qtCycle" />
       </v-form>
       <div id="resultado">
         <h2>Resultado:</h2>
@@ -130,10 +130,6 @@ const form = ref({
 });
 
 const showTable = ref(false);
-
-const setQtCycle = (value: number): void => {
-  form.value.qtCycle = value;
-};
 
 watch(
   () => form,

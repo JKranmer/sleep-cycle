@@ -19,10 +19,10 @@
 <script setup lang="ts">
 import { ref } from "vue";
 const qtCycle = ref(5);
-const emit = defineEmits(["getQtCycle"]);
+const emit = defineEmits(["update:modelValue"]);
 
 const changeQt = (): void => {
-  emit("getQtCycle", qtCycle.value);
+  emit("update:modelValue", qtCycle.value);
 };
 </script>
 <style lang="sass" src="./_range.scss"></style>
