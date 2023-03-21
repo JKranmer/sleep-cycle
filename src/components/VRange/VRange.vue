@@ -17,12 +17,20 @@
   </div>
 </template>
 <script setup lang="ts">
-import { ref } from "vue";
-const qtCycle = ref(5);
+import { ref, onMounted } from "vue";
+const qtCycle = ref();
+const props = defineProps<{
+  modelValue: number;
+}>();
+
 const emit = defineEmits(["update:modelValue"]);
 
 const changeQt = (): void => {
   emit("update:modelValue", qtCycle.value);
 };
+
+onMounted(() => {
+  qtCycle.value = props.modelValue;
+});
 </script>
 <style lang="sass" src="./_range.scss"></style>
