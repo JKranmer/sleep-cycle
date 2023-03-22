@@ -12,7 +12,7 @@
                 name="type"
                 v-model="form.start"
                 id="start"
-                value="0"
+                :value="0"
               />
             </label>
           </div>
@@ -24,14 +24,14 @@
                 name="type"
                 v-model="form.start"
                 id="end"
-                value="1"
+                :value="1"
               />
             </label>
           </div>
         </div>
         <div class="form__group">
           <label for="start-sleep" class="texto"
-            >Hora de <span>{{ handlePhrease(form.start) }}:</span>
+            >Hora de <span>{{ EWord[form.start] }}:</span>
           </label>
           <input
             type="time"
@@ -41,7 +41,7 @@
             placeholder="Preencher"
           />
         </div>
-        <v-range class="form__group" v-model="form.qtCycle" />
+        <v-range class="form__group" v-model:qt.uppercase="form.qtCycle" />
       </v-form>
       <div id="resultado">
         <h2>Resultado:</h2>
@@ -52,25 +52,46 @@
             status="error"
           ></v-resume>
           <v-resume
-            :label="`Hora de ${handlePhrease(form.start)}`"
+            :label="`Hora de ${EWord[form.start]}`"
             :value-text="form.time"
             status="regular"
           ></v-resume>
           <v-resume
             :label="`Tempo previsto para
-            ${handlePhrease(form.start == 1 ? 0 : 1)}`"
+            ${EWord[form.start == 1 ? 0 : 1]}`"
             :value-text="cardUp"
           ></v-resume>
         </v-resume-group>
       </div>
       <div class="group-btn">
         <v-button status="primary" @click="showTable = !showTable"
-          >{{ showTable ? "Ocultar" : "Mostrar" }} tabela</v-button
+          >{{ labelShow }} tabela</v-button
         >
       </div>
       <div v-if="showTable">
         <h2>Tabela de horário de onibus:</h2>
-        <v-table :start="form.start" :array-time-bus="list"></v-table>
+        <v-table :start="form.start" :array-time-bus="list">
+          <template #default="{ item }">
+            <td>
+              <div class="table--icon">
+                <v-icon icon="alarm_smart_wake"></v-icon>
+                {{ item.timeUp }}
+              </div>
+            </td>
+            <td>
+              <div class="table--icon">
+                <v-icon icon="snooze"></v-icon>
+                {{ item.duration }}
+              </div>
+            </td>
+            <td>
+              <div class="table--icon">
+                <v-icon icon="acute"></v-icon>
+                {{ item.time }}
+              </div>
+            </td>
+          </template>
+        </v-table>
         <router-link class="link" to="/curiosity">Curiosidade</router-link>
       </div>
       <div class="footer">
@@ -96,10 +117,19 @@ h2 {
   text-align: center;
   padding-top: 1rem;
 }
+
+.table--icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  span {
+    margin-right: 0.5rem;
+  }
+}
 </style>
 
 <script setup lang="ts">
-import { ref, watch, onMounted } from "vue";
+import { ref, watch, computed } from "vue";
 import { RouterLink } from "vue-router";
 
 import VContainer from "@/components/VContainer/VContainer.vue";
@@ -110,13 +140,14 @@ import VResume from "@/components/VResume/VResume.vue";
 import VResumeGroup from "@/components/VResume/VResumeGroup.vue";
 import VButton from "@/components/VButton/VButton.vue";
 import VTable from "@/components/VTable/VTable.vue";
+import VIcon from "@/components/VIcon/VIcon.vue";
 
-import type { ITimeBus } from "./SleepCycle";
 import {
   calcTime,
   transformTime,
-  handlePhrease,
   listTimeBus,
+  EWord,
+  type ITimeBus,
 } from "./SleepCycle";
 
 const cardDuration = ref("");
@@ -130,20 +161,19 @@ const form = ref({
 });
 
 const showTable = ref(false);
-
-watch(
-  () => form,
-  (): void => starCalc(),
-  { deep: true }
-);
-
-onMounted((): void => {
-  starCalc();
-});
+const labelShow = computed(() => (showTable.value ? "Ocultar" : "Mostrar"));
 
 const starCalc = (): void => {
   cardDuration.value = transformTime(form.value.qtCycle);
   cardUp.value = calcTime(form.value);
   list.value = listTimeBus(form.value);
 };
+
+watch(
+  form,
+  () => {
+    starCalc();
+  },
+  { deep: true, immediate: true }
+);
 </script>

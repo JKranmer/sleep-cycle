@@ -19,18 +19,26 @@
 <script setup lang="ts">
 import { ref, onMounted } from "vue";
 const qtCycle = ref();
-const props = defineProps<{
-  modelValue: number;
-}>();
 
-const emit = defineEmits(["update:modelValue"]);
+const props = defineProps({
+  qt: Number,
+  qtModifiers: {
+    type: Object,
+    default: () => ({}),
+  },
+});
+
+const emit = defineEmits(["update:qt"]);
 
 const changeQt = (): void => {
-  emit("update:modelValue", qtCycle.value);
+  if (props.qtModifiers.uppercase) {
+    console.log(props.qtModifiers);
+  }
+  emit("update:qt", qtCycle.value);
 };
 
 onMounted(() => {
-  qtCycle.value = props.modelValue;
+  qtCycle.value = props.qt;
 });
 </script>
 <style lang="sass" src="./_range.scss"></style>

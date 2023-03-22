@@ -3,26 +3,39 @@
     <thead class="text-capitalize">
       <tr>
         <th>
-          {{ handlePhrease(start == 1 ? 0 : 1) }}
+          {{ EWord[start == 1 ? 0 : 1] }}
         </th>
         <th>Duração</th>
         <th>
-          {{ handlePhrease(start!) }}
+          {{ EWord[start!] }}
         </th>
       </tr>
     </thead>
     <tbody>
       <tr v-for="(item, index) in arrayTimeBus" :key="index">
-        <td>{{ item.timeUp }}</td>
-        <td>{{ item.duration }}</td>
-        <td>{{ item.time }}</td>
+        <slot :item="item" :index="index">
+          <td>{{ item.timeUp }}</td>
+          <td>{{ item.duration }}</td>
+          <td>{{ item.time }}</td>
+        </slot>
       </tr>
     </tbody>
   </table>
 </template>
 
 <script setup lang="ts">
-import { handlePhrease, type ITimeBus } from "@/views/SleepCycle";
+import {
+  onMounted,
+  onUpdated,
+  onUnmounted,
+  onBeforeMount,
+  onBeforeUpdate,
+  onBeforeUnmount,
+  onActivated,
+  onDeactivated,
+  onServerPrefetch,
+} from "vue";
+import { EWord, type ITimeBus } from "@/views/SleepCycle";
 
 defineProps({
   start: {
@@ -31,6 +44,34 @@ defineProps({
   arrayTimeBus: {
     type: Array<ITimeBus>,
   },
+});
+
+onMounted(() => {
+  console.log("onMounted");
+});
+onUpdated(() => {
+  console.log("onUpdated");
+});
+onUnmounted(() => {
+  console.log("onUnmounted");
+});
+onBeforeMount(() => {
+  console.log("onBeforeMount");
+});
+onBeforeUpdate(() => {
+  console.log("onBeforeUpdate");
+});
+onBeforeUnmount(() => {
+  console.log("onBeforeUnmount");
+});
+onActivated(() => {
+  console.log("onActivated");
+});
+onDeactivated(() => {
+  console.log("onDeactivated");
+});
+onServerPrefetch(() => {
+  console.log("onServerPrefetch");
 });
 </script>
 <style lang="scss">

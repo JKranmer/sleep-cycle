@@ -32,7 +32,7 @@ const timeStartProcess = (time: string): Date => {
   return date;
 };
 
-enum EWord {
+export enum EWord {
   "dormir",
   "acordar",
 }
