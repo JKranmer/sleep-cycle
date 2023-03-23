@@ -22,18 +22,11 @@ const qtCycle = ref();
 
 const props = defineProps({
   qt: Number,
-  qtModifiers: {
-    type: Object,
-    default: () => ({}),
-  },
 });
 
 const emit = defineEmits(["update:qt"]);
 
 const changeQt = (): void => {
-  if (props.qtModifiers.uppercase) {
-    console.log(props.qtModifiers);
-  }
   emit("update:qt", qtCycle.value);
 };
 

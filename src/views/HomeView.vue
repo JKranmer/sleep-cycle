@@ -41,7 +41,7 @@
             placeholder="Preencher"
           />
         </div>
-        <v-range class="form__group" v-model:qt.uppercase="form.qtCycle" />
+        <v-range class="form__group" v-model:qt="form.qtCycle" />
       </v-form>
       <div id="resultado">
         <h2>Resultado:</h2>

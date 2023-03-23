@@ -24,17 +24,6 @@
 </template>
 
 <script setup lang="ts">
-import {
-  onMounted,
-  onUpdated,
-  onUnmounted,
-  onBeforeMount,
-  onBeforeUpdate,
-  onBeforeUnmount,
-  onActivated,
-  onDeactivated,
-  onServerPrefetch,
-} from "vue";
 import { EWord, type ITimeBus } from "@/views/SleepCycle";
 
 defineProps({
@@ -44,34 +33,6 @@ defineProps({
   arrayTimeBus: {
     type: Array<ITimeBus>,
   },
-});
-
-onMounted(() => {
-  console.log("onMounted");
-});
-onUpdated(() => {
-  console.log("onUpdated");
-});
-onUnmounted(() => {
-  console.log("onUnmounted");
-});
-onBeforeMount(() => {
-  console.log("onBeforeMount");
-});
-onBeforeUpdate(() => {
-  console.log("onBeforeUpdate");
-});
-onBeforeUnmount(() => {
-  console.log("onBeforeUnmount");
-});
-onActivated(() => {
-  console.log("onActivated");
-});
-onDeactivated(() => {
-  console.log("onDeactivated");
-});
-onServerPrefetch(() => {
-  console.log("onServerPrefetch");
 });
 </script>
 <style lang="scss">
