@@ -36,7 +36,14 @@ const router = createRouter({
     {
       path: "/studing",
       name: "studing",
-      component: () => import("../views/StudingView.vue"),
+      component: () => import("../views/template/DetailView.vue"),
+      children: [
+        {
+          path: "",
+          name: "CuriosityView",
+          component: () => import("../views/StudingView.vue"),
+        },
+      ],
     },
   ],
 });
