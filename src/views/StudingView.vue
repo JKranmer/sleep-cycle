@@ -15,6 +15,8 @@
     </v-form>
     {{ radioData }}
     <br />{{ inputData }}
+    <br />
+    {{ member }} - {{ color }} - sidebar: {{ sidebar }}
   </v-card>
 </template>
 <script setup lang="ts">
@@ -22,10 +24,28 @@ import VCard from "@/components/VCard/VCard.vue";
 import VForm from "@/components/VForm/VForm.vue";
 import VInput from "@/components/VForm/VInput.vue";
 import VRadio from "@/components/VForm/VRadio.vue";
-import { ref } from "vue";
+import { ref, computed } from "vue";
+import { useRoute } from "vue-router";
+
+defineProps({
+  member: {
+    default: "",
+    type: String,
+  },
+  color: {
+    default: "",
+    type: String,
+  },
+});
 
 const radioData = ref();
 const inputData = ref();
+
+const route = useRoute();
+
+const sidebar = computed(() => {
+  return route.meta.sidebar;
+});
 
 const questions = [
   {
@@ -69,7 +89,7 @@ const questions = [
   // },
 ];
 </script>
-<style lang="scss" setup>
+<style lang="scss" scoped>
 .form {
   display: block;
   &__group {

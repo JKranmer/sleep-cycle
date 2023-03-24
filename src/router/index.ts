@@ -25,9 +25,16 @@ const router = createRouter({
           component: view.Curiosity,
         },
         {
-          path: "/studing",
+          path: "/studing/:member(\\w+)?",
           name: "studingView",
+          meta: { sidebar: true },
           component: view.Studing,
+          props: (route) => ({ member: route.params.member, color: "red" }),
+          beforeEnter: (to, from, next) => {
+            console.log(to);
+            console.log(from);
+            next();
+          },
         },
         {
           path: "/:pathMatch(.*)",

@@ -12,11 +12,16 @@
 </style>
 
 <script setup lang="ts">
-import { RouterView } from "vue-router";
+import { onBeforeRouteLeave, RouterView, useRouter } from "vue-router";
 import VContainer from "@/components/VContainer/VContainer.vue";
-import router from "@/router";
-
+const router = useRouter();
 const goBack = () => {
   router.go(-1);
 };
+
+onBeforeRouteLeave(async (to, from, next) => {
+  console.log(to, "to");
+  console.log(from, "from");
+  next();
+});
 </script>
