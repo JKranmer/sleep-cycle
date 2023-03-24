@@ -92,10 +92,12 @@
             </td>
           </template>
         </v-table>
-        <router-link class="link" to="/curiosity">Curiosidade</router-link>
+        <router-link class="link" :to="{ name: 'curiosityView' }"
+          >Curiosidade</router-link
+        >
       </div>
       <div class="footer">
-        <router-link class="link" to="/about"
+        <router-link class="link" :to="{ name: 'aboutView' }"
           >Saiba mais como isso funciona</router-link
         >
       </div>
@@ -129,7 +131,7 @@ h2 {
 </style>
 
 <script setup lang="ts">
-import { ref, watch, computed } from "vue";
+import { ref, watch, computed, provide } from "vue";
 import { RouterLink } from "vue-router";
 
 import VContainer from "@/components/VContainer/VContainer.vue";
@@ -149,6 +151,10 @@ import {
   EWord,
   type ITimeBus,
 } from "./SleepCycle";
+
+const H = "Hello Word!!";
+
+provide("test_provide", H);
 
 const cardDuration = ref("");
 const cardUp = ref("");

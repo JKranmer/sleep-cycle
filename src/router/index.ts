@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from "vue-router";
-import Home from "../views/HomeView.vue";
+import * as view from "../views";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -7,41 +7,32 @@ const router = createRouter({
     {
       path: "/",
       name: "home",
-      component: Home,
+      component: view.Home,
     },
     {
-      path: "/about",
-      name: "about",
-      component: () => import("../views/template/DetailView.vue"),
+      path: "/detail-view",
+      name: "detailView",
+      component: view.Detail,
       children: [
         {
-          path: "",
-          name: "AboutView",
-          component: () => import("../views/AboutView.vue"),
+          path: "/about",
+          name: "aboutView",
+          component: view.About,
         },
-      ],
-    },
-    {
-      path: "/curiosity",
-      name: "curiosity",
-      component: () => import("../views/template/DetailView.vue"),
-      children: [
         {
-          path: "",
-          name: "CuriosityView",
-          component: () => import("../views/CuriosityView.vue"),
+          path: "/curiosity",
+          name: "curiosityView",
+          component: view.Curiosity,
         },
-      ],
-    },
-    {
-      path: "/studing",
-      name: "studing",
-      component: () => import("../views/template/DetailView.vue"),
-      children: [
         {
-          path: "",
-          name: "CuriosityView",
-          component: () => import("../views/StudingView.vue"),
+          path: "/studing",
+          name: "studingView",
+          component: view.Studing,
+        },
+        {
+          path: "/:pathMatch(.*)",
+          name: "notFouldView",
+          component: view.NotFould,
         },
       ],
     },

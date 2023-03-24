@@ -1,6 +1,6 @@
 <template>
   <v-Container>
-    <router-link to="/" class="link">Voltar</router-link>
+    <router-link :to="{ name: 'home' }" class="link">Voltar</router-link>
     <slot><router-view /></slot>
   </v-Container>
 </template>
