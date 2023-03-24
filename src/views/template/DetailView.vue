@@ -1,6 +1,6 @@
 <template>
   <v-Container>
-    <router-link :to="{ name: 'home' }" class="link">Voltar</router-link>
+    <span @click="goBack" class="link">Voltar</span>
     <slot><router-view /></slot>
   </v-Container>
 </template>
@@ -12,6 +12,11 @@
 </style>
 
 <script setup lang="ts">
-import { RouterLink, RouterView } from "vue-router";
+import { RouterView } from "vue-router";
 import VContainer from "@/components/VContainer/VContainer.vue";
+import router from "@/router";
+
+const goBack = () => {
+  router.go(-1);
+};
 </script>
