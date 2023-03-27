@@ -1,13 +1,15 @@
 import { createRouter, createWebHistory } from "vue-router";
 import * as view from "../views";
 
+const home = () => import(/* webpackChunName */ "../views/HomeView.vue");
+
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
       path: "/",
       name: "home",
-      component: view.Home,
+      component: home,
     },
     {
       path: "/detail-view",
@@ -27,7 +29,7 @@ const router = createRouter({
         {
           path: "/studing/:member(\\w+)?",
           name: "studingView",
-          meta: { sidebar: true },
+          meta: { sidebar: true, auth: true },
           component: view.Studing,
           props: (route) => ({ member: route.params.member, color: "red" }),
           beforeEnter: (to, from, next) => {
@@ -44,6 +46,15 @@ const router = createRouter({
       ],
     },
   ],
+  // Para quando mudar de pagina puder controlar o scroll horizontal e vertical da página
+  // parametros: to, from, savePosition
+  scrollBehavior() {
+    return {
+      // Podendo pegar de acordo a um elemento
+      // el: '#main',
+      top: 0,
+    };
+  },
 });
 
 export default router;
