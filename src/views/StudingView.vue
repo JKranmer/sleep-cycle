@@ -24,7 +24,7 @@ import VCard from "@/components/VCard/VCard.vue";
 import VForm from "@/components/VForm/VForm.vue";
 import VInput from "@/components/VForm/VInput.vue";
 import VRadio from "@/components/VForm/VRadio.vue";
-import { ref, computed } from "vue";
+import { ref, computed, watch } from "vue";
 import { useRoute } from "vue-router";
 
 defineProps({
@@ -64,30 +64,16 @@ const questions = [
       { label: "Opt 2", value: "opt_value_2", name: "opt_2" },
     ],
   },
-  // {
-  //   label: "Questão 3",
-  //   type: "checkbox",
-  //   name: "Q3",
-  //   option: [
-  // { label: "Opt 1", value: "opt_value_1", name: "opt_1" },
-  // { label: "Opt 2", value: "opt_value_2", name: "opt_2" },
-  //   ],
-  // },
-  // {
-  //   label: "Questão 4",
-  //   type: "textarea",
-  //   name: "Q4",
-  // },
-  // {
-  //   label: "Questão 5",
-  //   type: "select",
-  //   name: "Q5",
-  //   option: [
-  // { label: "Opt 1", value: "opt_value_1", name: "opt_1" },
-  // { label: "Opt 2", value: "opt_value_2", name: "opt_2" },
-  //   ],
-  // },
 ];
+
+// conseguir pegar o time quando mudar de rota internamente
+watch(
+  () => route,
+  (newValue: any, oldValue: any) => {
+    console.log(newValue);
+    console.log(oldValue);
+  }
+);
 </script>
 <style lang="scss" scoped>
 .form {
