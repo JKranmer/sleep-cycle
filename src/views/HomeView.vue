@@ -103,6 +103,7 @@
       </div>
     </v-card>
   </v-container>
+  <!-- {{ `${$store.state.first_name} ${$store.state.last_name}` }} -->
 </template>
 
 <style lang="scss" scoped>

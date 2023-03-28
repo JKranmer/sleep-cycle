@@ -25,6 +25,11 @@ export const routerArray = [
         component: view.Curiosity,
       },
       {
+        path: "/vue-router",
+        name: "vueRouterView",
+        component: () => import("../views/vueXView.vue"),
+      },
+      {
         path: "/studing/:member(\\w+)?",
         name: "studingView",
         meta: { sidebar: true, auth: true },
