@@ -20,19 +20,20 @@ export default defineComponent({
   setup() {
     return {};
   },
-
   created() {
     console.log(this.$_getPostById(2));
   },
   computed: {
     ...mapState({
-      firstName: (state: any) => state.first_name,
-      lastname: (state: any) => state.last_name,
-      counting: (state: any) => state.counter,
+      firstName: (state: any) => state.users.first_name,
+      lastname: (state: any) => state.users.last_name,
+      counting: (state: any) => state.counter.counter,
     }),
 
-    ...mapGetters({
+    ...mapGetters("users", {
       $_fullName: "fullName",
+    }),
+    ...mapGetters("posts", {
       $_getPostById: "getPostById",
     }),
 
@@ -43,6 +44,7 @@ export default defineComponent({
 
   methods: {
     ...mapMutations(
+      "counter",
       {
         // Boa praticas para saber que veio da store
         $_add: "INCREMENT",
@@ -52,6 +54,7 @@ export default defineComponent({
     ),
 
     ...mapActions(
+      "counter",
       {
         $_counter: "counter",
       }
