@@ -7,5 +7,10 @@ export default {
     last_name: "Boy",
     email: "jhonny@boy.com",
   }),
+  mutations: {
+    UPDATE(state: any, payload: string) {
+      state.first_name = payload;
+    },
+  },
   getters,
 };

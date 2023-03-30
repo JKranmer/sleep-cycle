@@ -5,8 +5,14 @@
     <h3>{{ $_fullName }}</h3>
     <div>
       <span @click="decrement()">-</span>
-      {{ counting }}
+      {{ $_counting }}
       <span @click="increment()">+</span>
+    </div>
+    <div>
+      <label for="first_name">Primeiro nome:</label>
+      <input type="text" name="first_name" v-model="firstName" />
+
+      {{ firstName }}
     </div>
   </div>
 </template>
@@ -25,9 +31,9 @@ export default defineComponent({
   },
   computed: {
     ...mapState({
-      firstName: (state: any) => state.users.first_name,
-      lastname: (state: any) => state.users.last_name,
-      counting: (state: any) => state.counter.counter,
+      $_firstName: (state: any) => state.users.first_name,
+      $_lastname: (state: any) => state.users.last_name,
+      $_counting: (state: any) => state.counter.counter,
     }),
 
     ...mapGetters("users", {
@@ -38,7 +44,17 @@ export default defineComponent({
     }),
 
     fullName() {
-      return `${this.firstName} ${this.lastname}`;
+      return `${this.$_firstName} ${this.$_lastname}`;
+    },
+
+    firstName: {
+      get() {
+        return this.$_firstName;
+      },
+      set(vl: string) {
+        console.log(vl);
+        this.$_update(vl);
+      },
     },
   },
 
@@ -53,6 +69,10 @@ export default defineComponent({
       // or ["decrement", "increment"]
     ),
 
+    ...mapMutations("users", {
+      $_update: "UPDATE",
+    }),
+
     ...mapActions(
       "counter",
       {
@@ -61,7 +81,7 @@ export default defineComponent({
       // or ["counter"]
     ),
     decrement() {
-      if (this.counting == 0) return;
+      if (this.$_counting == 0) return;
       this.$_counter({ type: "DECREMENT", value: 100 });
       // this.$_remove(10);
       // this.$store.commit("decrement");
